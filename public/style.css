@@ -1,3 +1,44 @@
-h1{
-    color: red;
+body{
+    background-image: url("images/wallPaper.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+.navBar {
+    height: 50px;
+    margin-top: 0px;
+    background-color: rgb(54, 17, 17);
+}
+.navBar a{
+    text-decoration: none; 
+    float: left;
+    font-size: 28px;
+    margin-right: 100px;
+    margin-top: 9px;
+    color: beige;
+}
+
+.navBar a:hover{
+    text-shadow: 0 0 10px #fff, 0 0 20px #fff, 0 0 30px #08cece, 0 0 40px #08cece, 0 0 50px #08cece, 0 0 60px #08cece, 0 0 70px #08cece;
+}
+
+.navBar ul{
+    list-style-type: none;
+}
+
+.nav-right{
+    float: right;
+}
+
+.intro {
+    text-align: center;
+    margin-top: 200px;
+    font-size: 54px;
+    text-shadow: 0 0 10px #fff, 0 0 20px #fff, 0 0 30px rgb(54, 17, 17), 0 0 40px rgb(54, 17, 17), 0 0 50px rgb(54, 17, 17), 0 0 60px rgb(54, 17, 17), 0 0 70px rgb(54, 17, 17);
+}
+
+.name1{
+    color: green;
+}
+.intro p{
+    font-size: 24px;
 }
