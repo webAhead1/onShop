@@ -1,4 +1,5 @@
 const express = require("express");
+const templates = require("./public/scripts/template.js");
 const path = require("path");
 const PORT = 4000;
 
@@ -7,13 +8,11 @@ const server = express();
 server.use(express.static("./public"));
 
 server.get("/", (req, res)=>{
-    res.sendFile(path.join(__dirname, "public", "index.html"));
+    res.send(templates.drawIndexPage());
 });
-server.get("/index", (req, res) => {
-    res.redirect("/");
-});
-server.get("/home", (req, res) => {
-    res.redirect("/");
+
+server.get("/login", (req, res) => {
+    res.send(templates.drawLoginPage());
 });
 
 server.listen(PORT, ()=>{
