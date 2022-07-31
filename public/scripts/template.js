@@ -50,7 +50,8 @@ function drawLoginPage(){
       <input type="submit" value="Login" id="login-form-submit">
     </form>
   
-  </main>`;
+  </main>
+  <script defer src="login.js"></script>`;
 
     return layout(content);
 }
