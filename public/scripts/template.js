@@ -1,5 +1,5 @@
-function layout(content){
-return `<!DOCTYPE html>
+function layout(content) {
+    return `<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -26,7 +26,7 @@ return `<!DOCTYPE html>
 </html>`;
 }
 
-function drawIndexPage(){
+function drawIndexPage() {
 
     let intro = `<div class="intro">
     <h1>Welcome to <br> <label class="name1">On</label>Store</h1>
@@ -36,7 +36,7 @@ function drawIndexPage(){
     return layout(intro);
 }
 
-function drawLoginPage(){
+function drawLoginPage() {
     let content = `<main id="main-holder">
     <h1 id="login-header">Login</h1>
     
@@ -56,4 +56,41 @@ function drawLoginPage(){
     return layout(content);
 }
 
-module.exports = { drawIndexPage, drawLoginPage };
+const productLayout = (product) => {
+    return `<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/style.css">
+    <title>Home Page - OnStore</title>
+</head>
+<body>
+    <div class="navBar">
+        <ul>
+            <li><a href="/">Home Page</a></li>
+            <li><a href="/login">Log-in</a></li>
+            <li><a href="/products">Products</a></li>
+            <div class="nav-right">
+                <li><a href="/cart">Cart</a></li>
+            </div>
+        </ul>
+    </div>
+
+        ${product}
+
+</body>
+</html>`;
+}
+
+const product = (productName, price, quantity) => {
+    return `<div> 
+    <h2> ${productName} </h2>
+    <br>
+    <p> ${price} </p>
+    <p> ${quantity} </p>    
+    </div>`;
+}
+
+module.exports = { drawIndexPage, drawLoginPage, productLayout, product };
