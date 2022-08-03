@@ -44,8 +44,7 @@ body{
 }
 
 #main-holder {
-    margin-left: 40%;
-    margin-top: 10%;
+    margin: 98px auto;
     width: 450px;
     height: 450px;
     display: grid;

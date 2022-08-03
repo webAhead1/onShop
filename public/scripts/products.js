@@ -1,5 +1,3 @@
-const templates = require("./template.js");
-
 const myProducts = [{
     id: 1,
     name: "Jacket",
@@ -35,12 +33,21 @@ const myProducts = [{
     price: "12000$",
     quantity: 3
 },
-]
+];
 
-let elements = "";
-myProducts.forEach(element => {
-    elements += templates.product(element.name, element.price, element.quantity)
-});
+function buildProducts(){
+    let table = `<div class='grid-container'>`;
+
+    myProducts.forEach((product)=>{
+        table += `<div class='gridItem'>${product.name}</div>`;
+    });
+
+    table += `</div>`;
+
+    return table;   
+}
 
 
-module.exports = { elements };
+
+
+module.exports = {buildProducts};

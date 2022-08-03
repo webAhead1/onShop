@@ -1,7 +1,5 @@
 const express = require("express");
 const templates = require("./public/scripts/template.js");
-const elements = require("./public/scripts/products.js")
-const path = require("path");
 const PORT = 4000;
 
 const server = express();
@@ -23,7 +21,7 @@ server.get("/login", (req, res) => {
 
 server.get("/products", (req, res) => {
 
-    res.send(templates.productLayout(elements));
+    res.send(templates.drawProductsPage());
 
 })
 
