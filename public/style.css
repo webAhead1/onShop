@@ -111,3 +111,31 @@ body{
     cursor: pointer;
     outline: none;
   }
+
+.grid-container {
+    display: grid;
+    grid-template-columns: auto auto auto auto;
+    background-color: rgb(54, 17, 17);
+    margin: 50px auto;
+    padding: 10px;
+    border-radius: 7px;
+    gap: 10px;
+  }
+
+  .gridItem{
+    background-color: #0ea7a7;
+    border: 2px solid;
+    font-size: 20px;
+    text-align: center;
+  }
+
+  .gridItem:hover {
+    background-color: #554e4e;
+  }
+
+  .productSubmit{
+    font-size: 19px;
+    margin-top: 10px;
+    background-color: #0ea7a7;
+    border-radius: 7px;
+  }

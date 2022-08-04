@@ -33,21 +33,33 @@ const myProducts = [{
     price: "12000$",
     quantity: 3
 },
+{
+    id: 7,
+    name: "Airplane",
+    price: "13$",
+    quantity: 7
+},
+{
+    id: 8,
+    name: "Ship",
+    price: "14$",
+    quantity: 3
+}
 ];
 
 function buildProducts(){
     let table = `<div class='grid-container'>`;
 
     myProducts.forEach((product)=>{
-        table += `<div class='gridItem'>${product.name}</div>`;
+        table += `<div id='${product.id}' class='gridItem'><label class='productName'>${product.name}</label><br>`;
+        table += `Price: ${product.price}`;
+        table += `</div>`
     });
 
     table += `</div>`;
+    table += `<script src='productsDom.js'></script>`;
 
     return table;   
 }
-
-
-
 
 module.exports = {buildProducts};

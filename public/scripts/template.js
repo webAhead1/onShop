@@ -23,7 +23,7 @@ function layout(content) {
     </div>
 
         ${content}
-
+    
 </body>
 </html>`;
 }

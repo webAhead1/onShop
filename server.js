@@ -5,9 +5,7 @@ const PORT = 4000;
 const server = express();
 
 server.use(express.static("./public"));
-server.use(express.static("./public/scripts"));
-
-
+server.use(express.static("./public/scripts"))
 
 server.get("/", (req, res) => {
     res.send(templates.drawIndexPage());
