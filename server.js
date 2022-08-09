@@ -9,9 +9,10 @@ const server = express();
 server.use(express.static("./public"));
 server.use(express.static("./public/scripts"))
 server.use(express.urlencoded());
+server.use(cookieParser());
 
 server.get("/", (req, res) => {
-    res.send(templates.drawIndexPage());
+    res.send(templates.drawIndexPage(req.cookies.email));
 });
 
 server.get("/login", (req, res) => {
@@ -23,12 +24,19 @@ server.post("/login", (req, res) => {
         const email = req.body.email;
         res.cookie("email", email);
         res.redirect("/");
+    }else{
+        console.log("error..");
     }
+});
+
+server.get("/logout", (req, res)=>{
+    res.clearCookie("email");
+    res.redirect("/");
 });
 
 server.get("/products", (req, res) => {
 
-    res.send(templates.drawProductsPage());
+    res.send(templates.drawProductsPage(req.cookies.email));
 
 });
 

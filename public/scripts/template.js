@@ -1,6 +1,20 @@
 const productList = require("./products.js");
 
-function layout(content) {
+function layout(content, loggedIn) {
+    let menu;
+    if (loggedIn){
+        menu = `<li><a href="/">Home Page</a></li>
+        <li><a href="/products">Products</a></li>
+        <div class="nav-right">
+            <li><a href="/cart">Cart</a></li>
+            <li><a href="/logout">Logout</a></li>
+        </div>`;
+    }else {
+        menu = `<li><a href="/">Home Page</a></li>
+        <li><a href="/login">Log-in</a></li>
+        <li><a href="/register">Register</a></li>
+        <li><a href="/products">Products</a></li>`;
+    }
     return `<!DOCTYPE html>
 <html lang="en">
 <head>
@@ -13,13 +27,7 @@ function layout(content) {
 <body>
     <div class="navBar">
         <ul>
-            <li><a href="/">Home Page</a></li>
-            <li><a href="/login">Log-in</a></li>
-            <li><a href="/register">Register</a></li>
-            <li><a href="/products">Products</a></li>
-            <div class="nav-right">
-                <li><a href="/cart">Cart</a></li>
-            </div>
+            ${menu}
         </ul>
     </div>
 
@@ -29,14 +37,14 @@ function layout(content) {
 </html>`;
 }
 
-function drawIndexPage() {
+function drawIndexPage(email) {
 
     let intro = `<div class="intro">
     <h1>Welcome to <br> <label class="name1">On</label>Store</h1>
     <p>Shopping made easy!</p>
 </div>`;
 
-    return layout(intro);
+    return layout(intro, email);
 }
 
 function drawLoginPage() {
@@ -53,10 +61,9 @@ function drawLoginPage() {
       <input type="submit" value="Login" id="login-form-submit">
     </form>
   
-  </main>
-  <script defer src="login.js"></script>`;
+  </main>`;
 
-    return layout(content);
+    return layout(content, 0);
 }
 
 function drawRegisterPage(){
@@ -71,14 +78,13 @@ function drawRegisterPage(){
     
     </form>
     
-    </main>
-    <script defer src="register.js"></script>`;
+    </main>`;
 
-    return layout(content);
+    return layout(content, 0);
 }
 
-function drawProductsPage(){
-    return layout(productList.buildProducts());
+function drawProductsPage(loggedIn){
+    return layout(productList.buildProducts(), loggedIn);
 }
 
 

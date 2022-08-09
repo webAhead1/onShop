@@ -18,13 +18,17 @@ function register(data){
 }
 
 function login(data){
+    let loginresult;
     db.query(`SELECT * FROM shop_users where email='${data.email}' AND password='${data.password}'`).then((result) => {
         if (result.rows.length > 0){
-            return true;
+            loginresult = true;
         }else{
             console.log("email/pass are incorrect");
+            loginresult = false;
         }
     });
+    console.log(loginresult);
+    return loginresult;
 }
 
 module.exports = {register, login};

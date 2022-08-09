@@ -15,4 +15,11 @@ CREATE TABLE products(
     quantity INTEGER
 );
 
+CREATE TABLE cart(
+    id SERIAL PRIMARY KEY,
+    product_Id INTEGER,
+    quantity INTEGER,
+    userId INTEGER
+);
+
 COMMIT;
