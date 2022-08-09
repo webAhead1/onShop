@@ -6,6 +6,7 @@ const server = express();
 
 server.use(express.static("./public"));
 server.use(express.static("./public/scripts"))
+server.use(express.urlencoded());
 
 server.get("/", (req, res) => {
     res.send(templates.drawIndexPage());
@@ -21,7 +22,13 @@ server.get("/products", (req, res) => {
 
     res.send(templates.drawProductsPage());
 
-})
+});
+
+server.get("/register", (req, res) => {
+    res.send(templates.drawRegisterPage());
+});
+
+
 
 
 server.listen(PORT, () => {

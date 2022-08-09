@@ -15,6 +15,7 @@ function layout(content) {
         <ul>
             <li><a href="/">Home Page</a></li>
             <li><a href="/login">Log-in</a></li>
+            <li><a href="/register">Register</a></li>
             <li><a href="/products">Products</a></li>
             <div class="nav-right">
                 <li><a href="/cart">Cart</a></li>
@@ -58,9 +59,27 @@ function drawLoginPage() {
     return layout(content);
 }
 
+function drawRegisterPage(){
+    let content = `<main id="main-holder">
+    <h1 id="login-header">Register</h1>
+    
+    <form id="login-form">
+        <input type="text" placeholder="Enter your email" class="login-form-field" id="register_email"></input>
+        <input type="password" placeholder="Enter password" class="login-form-field" id="register_pass1"></input>
+        <input type="password" placeholder="confirm password" class="login-form-field" id="register_pass2"></input>
+        <input type="submit" id="register_submit"></input>
+    
+    </form>
+    
+    </main>
+    <script defer src="register.js"></script>`;
+
+    return layout(content);
+}
+
 function drawProductsPage(){
     return layout(productList.buildProducts());
 }
 
 
-module.exports = { drawIndexPage, drawLoginPage, drawProductsPage };
+module.exports = { drawIndexPage, drawLoginPage, drawProductsPage, drawRegisterPage };
