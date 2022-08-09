@@ -63,10 +63,10 @@ function drawRegisterPage(){
     let content = `<main id="main-holder">
     <h1 id="login-header">Register</h1>
     
-    <form id="login-form">
-        <input type="text" placeholder="Enter your email" class="login-form-field" id="register_email"></input>
-        <input type="password" placeholder="Enter password" class="login-form-field" id="register_pass1"></input>
-        <input type="password" placeholder="confirm password" class="login-form-field" id="register_pass2"></input>
+    <form id="login-form" method="POST">
+        <input name="email" type="text" placeholder="Enter your email" class="login-form-field" id="register_email"></input>
+        <input name="pass" type="password" placeholder="Enter password" class="login-form-field" id="register_pass1"></input>
+        <input name="confirmpass" type="password" placeholder="confirm password" class="login-form-field" id="register_pass2"></input>
         <input type="submit" id="register_submit"></input>
     
     </form>

@@ -1,12 +1,12 @@
 const express = require("express");
 const templates = require("./public/scripts/template.js");
+const serverScripts = require("./public/scripts/serverscripts.js");
 const PORT = 4000;
 
 const server = express();
 
 server.use(express.static("./public"));
 server.use(express.static("./public/scripts"))
-server.use(express.urlencoded());
 
 server.get("/", (req, res) => {
     res.send(templates.drawIndexPage());
@@ -28,6 +28,9 @@ server.get("/register", (req, res) => {
     res.send(templates.drawRegisterPage());
 });
 
+server.post("/register", express.urlencoded(), (req, res)=>{
+    serverScripts.register(req.body);
+});
 
 
 
