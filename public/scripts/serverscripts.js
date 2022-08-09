@@ -20,7 +20,7 @@ function register(data){
 function login(data){
     db.query(`SELECT * FROM shop_users where email='${data.email}' AND password='${data.password}'`).then((result) => {
         if (result.rows.length > 0){
-            console.log("Logged in!");
+            return true;
         }else{
             console.log("email/pass are incorrect");
         }

@@ -1,4 +1,5 @@
 const express = require("express");
+const cookieParser = require("cookie-parser");
 const templates = require("./public/scripts/template.js");
 const serverScripts = require("./public/scripts/serverscripts.js");
 const PORT = 4000;
@@ -18,7 +19,11 @@ server.get("/login", (req, res) => {
 });
 
 server.post("/login", (req, res) => {
-    serverScripts.login(req.body);
+    if (serverScripts.login(req.body)){
+        const email = req.body.email;
+        res.cookie("email", email);
+        res.redirect("/");
+    }
 });
 
 server.get("/products", (req, res) => {
