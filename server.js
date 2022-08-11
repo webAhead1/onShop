@@ -1,7 +1,7 @@
 const express = require("express");
 const cookieParser = require("cookie-parser");
 const templates = require("./public/scripts/template.js");
-const serverScripts = require("./public/scripts/serverscripts.js");
+const db = require("./database/connection.js");
 const PORT = 4000;
 
 const server = express();
@@ -20,13 +20,15 @@ server.get("/login", (req, res) => {
 });
 
 server.post("/login", (req, res) => {
-    if (serverScripts.login(req.body)){
-        const email = req.body.email;
-        res.cookie("email", email);
-        res.redirect("/");
-    }else{
-        console.log("error..");
-    }
+    const data = req.body;
+    db.query(`SELECT * FROM shop_users where email='${data.email}' AND password='${data.password}'`).then((result)=>{
+        if (result.rows.length > 0){
+            res.cookie("email", data.email);
+            res.redirect("/");
+        }else{
+            console.log("Account was not found...");
+        }
+    });
 });
 
 server.get("/logout", (req, res)=>{
@@ -45,7 +47,23 @@ server.get("/register", (req, res) => {
 });
 
 server.post("/register", (req, res)=>{
-    serverScripts.register(req.body);
+    const data = req.body;
+    if (data.pass !== data.confirmpass){
+        console.log("passwords do not match!");
+        return;
+    }
+    db.query(`SELECT * FROM shop_users WHERE email='${data.email}'`).then((result)=>{
+        if (result.rows.length > 0){
+            console.log("email already exists");
+        }else {
+            db.query(`INSERT INTO shop_users (email, password) values('${data.email}','${data.pass}')`).then((result) => {
+            res.cookie("email", data.email);
+            console.log("Account has been created, redirecting to home page.");
+            res.redirect("/");
+            });
+        }  
+    });
+
 });
 
 

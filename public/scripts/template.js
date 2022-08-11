@@ -2,6 +2,7 @@ const productList = require("./products.js");
 
 function layout(content, loggedIn) {
     let menu;
+    let loggedInAs = ``;
     if (loggedIn){
         menu = `<li><a href="/">Home Page</a></li>
         <li><a href="/products">Products</a></li>
@@ -9,6 +10,7 @@ function layout(content, loggedIn) {
             <li><a href="/cart">Cart</a></li>
             <li><a href="/logout">Logout</a></li>
         </div>`;
+        loggedInAs = `<h3>You are logged in as <label class='name1'>${loggedIn}</label></h3>`;
     }else {
         menu = `<li><a href="/">Home Page</a></li>
         <li><a href="/login">Log-in</a></li>
@@ -30,6 +32,7 @@ function layout(content, loggedIn) {
             ${menu}
         </ul>
     </div>
+        ${loggedInAs}
 
         ${content}
     
