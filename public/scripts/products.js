@@ -48,7 +48,8 @@ const myProducts = [{
 ];
 
 function buildProducts(){
-    let table = `<div class='grid-container'>`;
+    let table = `<form method="POST">`;
+    table += `<div class='grid-container'>`;
 
     myProducts.forEach((product)=>{
         table += `<div id='${product.id}' class='gridItem'><label class='productName'>${product.name}</label><br>`;
@@ -56,7 +57,7 @@ function buildProducts(){
         table += `</div>`
     });
 
-    table += `</div>`;
+    table += `</div></form>`;
     table += `<script src='productsDom.js'></script>`;
 
     return table;   

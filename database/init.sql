@@ -1,6 +1,6 @@
 BEGIN;
 
-DROP TABLE IF EXISTS shop_users, products CASCADE;
+DROP TABLE IF EXISTS shop_users, products, cart CASCADE;
 
 CREATE TABLE shop_users(
     id SERIAL PRIMARY KEY,
@@ -18,7 +18,6 @@ CREATE TABLE products(
 CREATE TABLE cart(
     id SERIAL PRIMARY KEY,
     product_Id INTEGER,
-    quantity INTEGER,
     userId INTEGER
 );
 

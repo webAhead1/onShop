@@ -2,6 +2,7 @@ const express = require("express");
 const cookieParser = require("cookie-parser");
 const templates = require("./public/scripts/template.js");
 const db = require("./database/connection.js");
+const { Server } = require("http");
 const PORT = 4000;
 
 const server = express();
@@ -42,6 +43,20 @@ server.get("/products", (req, res) => {
 
 });
 
+server.post("/products", (req, res)=>{
+    if (!req.cookies.email){
+        console.log("You need to be logged in to perform this action");
+    }else{
+        db.query(`SELECT id FROM shop_users WHERE email='${req.cookies.email}'`).then((result)=>{
+            const userId = result.rows[0].id;
+            db.query(`INSERT INTO cart (product_Id,userId) values('${req.body.productId}','${userId}')`).then((result2)=>{
+                console.log("added (I think)");
+                console.log(result2.rows);
+            });
+        });
+    }
+});
+
 server.get("/register", (req, res) => {
     res.send(templates.drawRegisterPage());
 });
@@ -64,6 +79,16 @@ server.post("/register", (req, res)=>{
         }  
     });
 
+});
+
+server.get("/cart", (req, res)=>{
+    const email = req.cookies.email;
+    db.query(`SELECT id FROM shop_users WHERE email='${email}'`).then((result) =>{
+        const userId = result.rows[0].id;
+        db.query(`SELECT * FROM cart WHERE userId='${userId}'`).then((result2)=>{
+            res.send(templates.drawCart(email, result2.rows));
+        });
+    });
 });
 
 

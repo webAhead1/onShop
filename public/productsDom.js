@@ -4,7 +4,6 @@ let hoveredSave;
 Array.from(document.getElementsByClassName("gridItem")).forEach((elem)=>{
     elem.addEventListener("mouseleave", restoreProduct);
     elem.addEventListener("mouseenter", productHover);
-    elem.addEventListener("click", addToCasket);
 });
 
 function restoreProduct(e){
@@ -14,9 +13,7 @@ function restoreProduct(e){
  function productHover(e){
     hoveredDiv = document.getElementById(e.target.id);
     hoveredSave = hoveredDiv.innerHTML;
-    hoveredDiv.innerHTML = "<input type='submit' value='Add to cart' class='productSubmit'></input>";
- }
-
- function addToCasket(e){
-    alert(`Product has been added to cart`);
+   // hoveredDiv.innerHTML = "<input name='productId' type='submit' value='Add to cart' class='productSubmit'></input>";
+   hoveredDiv.innerHTML = `<input type='hidden' name='productId' value='${e.target.id}'></input>`;
+   hoveredDiv.innerHTML += "<input type='image' value='232' src='./images/addToCart.png' class='submitToCart'></input>";
  }

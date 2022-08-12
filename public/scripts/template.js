@@ -10,7 +10,7 @@ function layout(content, loggedIn) {
             <li><a href="/cart">Cart</a></li>
             <li><a href="/logout">Logout</a></li>
         </div>`;
-        loggedInAs = `<h3>You are logged in as <label class='name1'>${loggedIn}</label></h3>`;
+        loggedInAs = `<h3>You are logged in as <label class='name1' id="emailLabel">${loggedIn}</label></h3>`;
     }else {
         menu = `<li><a href="/">Home Page</a></li>
         <li><a href="/login">Log-in</a></li>
@@ -90,5 +90,17 @@ function drawProductsPage(loggedIn){
     return layout(productList.buildProducts(), loggedIn);
 }
 
+function drawCart(email, cart){
+    let content = `<h2>You have <label class='name1'>${cart.length}</label> items in your cart.</h2>`;
+    content += `<div class='cart'>`;
 
-module.exports = { drawIndexPage, drawLoginPage, drawProductsPage, drawRegisterPage };
+    cart.forEach((cartItem)=>{
+        content += `<div id='${cartItem.id}' class='gridItem'><label class='productName'>CART ITEM NAME</label></div>`;
+    });
+
+    content += `</div>`;
+    return layout(content, email);
+}
+
+
+module.exports = { drawIndexPage, drawLoginPage, drawProductsPage, drawRegisterPage, drawCart };
