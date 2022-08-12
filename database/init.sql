@@ -17,8 +17,8 @@ CREATE TABLE products(
 
 CREATE TABLE cart(
     id SERIAL PRIMARY KEY,
-    product_Id INTEGER,
-    userId INTEGER
+    product_name VARCHAR(50) NOT NULL,
+    userid INTEGER
 );
 
 COMMIT;

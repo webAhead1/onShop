@@ -1,3 +1,4 @@
+const { Console } = require("console");
 const productList = require("./products.js");
 
 function layout(content, loggedIn) {
@@ -95,7 +96,7 @@ function drawCart(email, cart){
     content += `<div class='cart'>`;
 
     cart.forEach((cartItem)=>{
-        content += `<div id='${cartItem.id}' class='gridItem'><label class='productName'>CART ITEM NAME</label></div>`;
+        content += `<div id='${cartItem.id}' class='gridItem'><label class='productName'>${cartItem.product_name}</label></div>`;
     });
 
     content += `</div>`;

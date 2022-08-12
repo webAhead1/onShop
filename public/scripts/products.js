@@ -53,7 +53,7 @@ function buildProducts(){
 
     myProducts.forEach((product)=>{
         table += `<div id='${product.id}' class='gridItem'><label class='productName'>${product.name}</label><br>`;
-        table += `Price: ${product.price}`;
+        table += ` | Price: ${product.price} |`;
         table += `</div>`
     });
 
