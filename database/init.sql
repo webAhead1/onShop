@@ -21,4 +21,13 @@ CREATE TABLE cart(
     userid INTEGER
 );
 
+INSERT INTO products(product_name, price,quantity) VALUES ('Laptop', 800,5),
+('Jacket',100,7),
+('Shoes',60,17),
+('Window',200,120),
+('iphone',1100,52),
+('Car',12000,3),
+('Airplane',3,2),
+('Ship',14,3);
+
 COMMIT;

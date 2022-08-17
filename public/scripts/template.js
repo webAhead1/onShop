@@ -96,8 +96,25 @@ function drawRegisterPage() {
   return layout(content, 0);
 }
 
-function drawProductsPage(loggedIn) {
-  return layout(productList.buildProducts(), loggedIn);
+function drawProductsPage(data, loggedIn) {
+  //  return layout(productList.buildProducts());
+  return layout(AddProducts(data), loggedIn);
+}
+
+function AddProducts(data) {
+  let table = `<form method="POST"><div class='grid-container'>`;
+
+  data.forEach((product) => {
+    table += `<div id='${product.id}' class='gridItem'><label class='productName'>${product.product_name}</label><br>`;
+    table += `Price: ${product.price}$`;
+    table += `</div>`;
+  });
+
+  table += `</div>
+  </form>`;
+  table += `<script src='./productsDom.js'></script>`;
+  //console.log(table)
+  return table;
 }
 
 function drawCart(email, cart) {

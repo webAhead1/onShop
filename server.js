@@ -23,7 +23,7 @@ server.post("/login", (req, res) => {
   const data = req.body;
   db.query(`SELECT * FROM shop_users where email=$1 AND password=$2`, [
     data.email,
-    data.pass,
+    data.password,
   ]).then((result) => {
     if (result.rows.length > 0) {
       res.cookie("email", data.email);
@@ -40,7 +40,12 @@ server.get("/logout", (req, res) => {
 });
 
 server.get("/products", (req, res) => {
-  res.send(templates.drawProductsPage(req.cookies.email));
+  // bring db to here
+  // var data
+  db.query("SELECT * FROM products").then((result) => {
+    console.log(result.rows);
+    res.send(templates.drawProductsPage(result.rows, req.cookies.email));
+  });
 });
 
 server.post("/products", (req, res) => {
@@ -92,13 +97,15 @@ server.post("/register", (req, res) => {
 
 server.get("/cart", (req, res) => {
   const email = req.cookies.email;
-  db.query(`SELECT id FROM shop_users WHERE email=$1`, [data.email]).then(
+  db.query(`SELECT id FROM shop_users WHERE email=$1`, [email]).then(
     (result) => {
       const userId = result.rows[0].id;
-      db.query(`SELECT * FROM cart WHERE userid=$1`, userId).then((result2) => {
-        console.log(result2.rows);
-        res.send(templates.drawCart(email, result2.rows));
-      });
+      db.query(`SELECT * FROM cart WHERE userid=$1`, [userId]).then(
+        (result2) => {
+          console.log(result2.rows);
+          res.send(templates.drawCart(email, result2.rows));
+        }
+      );
     }
   );
 });
